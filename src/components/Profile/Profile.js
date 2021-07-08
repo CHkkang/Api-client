@@ -77,11 +77,11 @@ export default function Profile(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-    const result = await getProfile(props.location.state.user_id);
+    const result = await getProfile(localStorage.getItem("user_id"));
     setProfile(result);
   };
     fetchData();
-  }, [props.location.state.user_id]);
+  }, []);
 
   return (
       <Card className="card">

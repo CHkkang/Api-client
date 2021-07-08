@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function appendData(data, id) {
+function appendData(data) {
   const formData = new FormData()
   const input = document.getElementById('photo');
   const file = input.files[0]
@@ -71,15 +71,14 @@ function appendData(data, id) {
       formData.append(key, data[key]);
     }
   }
-  formData.append("user_id", id)
+  formData.append("user_id", localStorage.getItem("user_id"))
   for (var pair of formData.entries()) { console.log(pair[0]+ ', ' + pair[1] + ' type : '+ typeof pair[1]) };
 
   return formData
 }
 
 async function createProfile(data, props) {
-  const id = props.location.state.user_id
-  const formData = appendData(data, id)
+  const formData = appendData(data)
   fetch('/api/profiles', {
     method: 'POST',
     body: formData
@@ -87,13 +86,11 @@ async function createProfile(data, props) {
     .then(data => data.json())
     .then((result) => {
           if(result.status === "Success") {
-            localStorage.setItem ("token", result.token)
             props.history.push({
               pathname: '/profile/mypage',
-              state: {user_id: result.user_id}
             });
           } else {
-            alert("프로필 형식 오류!")
+            alert("[서버 에러] 다음에 다시 이용해주세요")
           }
       })
 }
