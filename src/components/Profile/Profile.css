@@ -1,0 +1,14 @@
+.card {
+    margin: auto;
+}
+@media screen and (min-width: 769px) {
+    .card {
+        max-width: 30%; 
+    }    
+};
+
+@media screen and (max-width: 768px) {
+    .card {
+        max-width: 100%; 
+    }  
+};
