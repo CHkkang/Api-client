@@ -13,8 +13,8 @@ function App() {
     <div>
       <Route exact path="/" component={Login} />
       <Route path="/signup" component={SignUpContainer}/>
-      <Route path="/profile/create" component={CreateProfileForm}/>
       <Route path="/profile/mypage" component={Profile}/>
+      <Route path="/profile/create" component={CreateProfileForm}/>
     </div>
   );  
 }
