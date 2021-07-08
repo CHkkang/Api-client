@@ -31,7 +31,8 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   table: {
-    margin: theme.spacing(7,7,7,7),
+    marginTop: theme.spacing(3),
     alignItems: 'center',
     width: '50%',
   },
@@ -56,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     width: '150px',
     height: '150px',
   },
+  typography: {
+    marginBottom: theme.spacing(3),
+  }
 
 }));
 
@@ -86,8 +90,8 @@ export default function Profile(props) {
   return (
       <Card className="card">
           <div className={classes.paper}>
-              <Typography component="h1" variant="h3" className={classes.typography}>
-                  MyPage
+              <Typography component="h1" variant="h5" className={classes.typography}>
+                프로필
               </Typography>
               <Avatar alt="Profile Image" src={profile.photo} className={classes.profile_image} />
               <TableContainer className="table">
