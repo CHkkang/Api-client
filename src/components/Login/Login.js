@@ -51,20 +51,26 @@ async function login(data, props) {
   fetch('/api/login', {
     method: 'POST',
     headers: new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }),
     body: JSON.stringify(data)
   })
     .then(data => data.json())
     .then((result) => {
-        console.log(result)
          if(result.status === "Success") {
            if(result.has_profile){
               localStorage.setItem ("token", result.token);
-              props.history.push('/profile/mypage');
-           }
+              props.history.push({
+                pathname: '/profile/mypage',
+                state: {user_id: result.user_id}
+              });
+           }else{
             localStorage.setItem ("token", result.token);
-            props.history.push('/profile/create');
+            props.history.push({
+              pathname: '/profile/create',
+              state: {user_id: result.user_id}
+            });
+           }
           } else {
             alert("아이디 및 패스워드가 일치하지 않습니다.")
             props.history.push('/');
